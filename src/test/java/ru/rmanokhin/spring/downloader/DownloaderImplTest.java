@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class DownloaderImplTest {
 
 
-    String fileUrl = "https://ruv.hotmo.org/get/music/20191123/Mjevl_-_KHolodok_67381798.mp3";
-    String fileName = "Mjevl_-_KHolodok_67381798.mp3";
+    String fileUrl = "http://speedtest.ftp.otenet.gr/files/test1Mb.db";
+    String fileName = "test1Mb.db";
     int downloadSpeed = 512000;
     String folderNameToDownload  = "src/main/resources/download/";
 
