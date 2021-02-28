@@ -78,7 +78,7 @@ public class MainMenuImpl implements MainMenu {
         do {
             System.out.println("Enter path to save files: ");
             System.out.println("Example: C:\\folderName");
-            System.out.println("Or use that - src\\main\\resources\\download");
+            System.out.println("Or use that - src\\main\\resources\\downloads");
 
             pathDownload = userParameters.pathDownload();
             if (pathDownload == null) {

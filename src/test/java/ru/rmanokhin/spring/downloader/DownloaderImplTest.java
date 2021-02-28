@@ -10,7 +10,7 @@ class DownloaderImplTest {
     String fileUrl = "http://speedtest.ftp.otenet.gr/files/test1Mb.db";
     String fileName = "test1Mb.db";
     int downloadSpeed = 512000;
-    String folderNameToDownload  = "src/main/resources/download/";
+    String folderNameToDownload  = "src/main/resources/downloads/";
 
     Downloader downloader = new DownloaderImpl(fileUrl, fileName, downloadSpeed, folderNameToDownload);
 

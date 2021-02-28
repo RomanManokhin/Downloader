@@ -22,7 +22,7 @@ class MultiThreadedDownloaderImplTest {
     int testCountThreads = 5;
     int testCountUrls = 5;
     int testDownloadSpeed = 500;
-    String testFolderForDownload = "src/main/resources/download/";
+    String testFolderForDownload = "src/main/resources/downloads/";
 
     List<String> testFileNames = Arrays.asList("Mjevl_-_KHolodok_67381798.mp3"
             , "Ruki_Vverkh_Oksana_Pochepa_-_Tolko_dlya_tebya_72239067.mp3"
