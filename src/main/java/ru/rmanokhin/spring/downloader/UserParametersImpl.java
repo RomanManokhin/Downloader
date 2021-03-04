@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * класс для получения данных от пользователя
+ * Class for handling user input
  */
 @Component
 public class UserParametersImpl implements UserParameters {
@@ -16,7 +16,9 @@ public class UserParametersImpl implements UserParameters {
     BufferedReader bufferedReader;
 
     /**
-     * метод для получения количества потоков скачивания от пользователя
+     * Method for getting the number of download streams from a user
+     *
+     * @return count threads
      */
     @Override
     public int takeThreads() {
@@ -28,7 +30,7 @@ public class UserParametersImpl implements UserParameters {
         try {
             String temp = bufferedReader.readLine();
             threads = Integer.parseInt(temp);
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
 
@@ -36,7 +38,7 @@ public class UserParametersImpl implements UserParameters {
     }
 
     /**
-     * метод для получения места хранения файла из которого необходимо брать ссылки для скачивания
+     * Method for getting the path to a file with links
      */
     @Override
     public String takePathFile() {
@@ -63,7 +65,7 @@ public class UserParametersImpl implements UserParameters {
     }
 
     /**
-     * метод для получения скорости скачивания файлов
+     * Method for getting the download speed of files
      */
     @Override
     public int downloadSpeed() {
@@ -83,7 +85,7 @@ public class UserParametersImpl implements UserParameters {
 
 
     /**
-     * метод для получения пути сохранения файлов от пользователя
+     * Method for getting the path to save files from the user
      */
     @Override
     public String pathDownload() {

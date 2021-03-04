@@ -6,7 +6,7 @@ import ru.rmanokhin.spring.downloader.UserParameters;
 import java.io.IOException;
 
 /**
- * Класс с меню для получения данных от пользователя, что бы производить загрузку по его параметрам
+ * Menu class for working with a user
  */
 @Component
 public class MainMenuImpl implements MainMenu {
@@ -17,10 +17,16 @@ public class MainMenuImpl implements MainMenu {
         this.userParameters = userParameters;
     }
 
+    /**
+     * Method for getting the number of download streams
+     *
+     * @return count threads > 0
+     */
     @Override
     public int menuCountThreads() {
 
         int threads = 0;
+
         do {
             System.out.print("Enter the number of streams to download: ");
             try {
@@ -35,11 +41,16 @@ public class MainMenuImpl implements MainMenu {
         return threads;
     }
 
+    /**
+     * Method for getting the path to a file with links
+     */
     @Override
     public String menuTakePathFile() {
+
         String pathFile = null;
+
         do {
-            System.out.println("Use that - src/main/resources/info/data.txt");
+            System.out.println("Can use that - src/main/resources/info/data.txt");
             System.out.print("Enter file path: ");
             try {
                 pathFile = userParameters.takePathFile();
@@ -54,9 +65,16 @@ public class MainMenuImpl implements MainMenu {
         return pathFile;
     }
 
+    /**
+     * Method for getting download speed
+     *
+     * @return download speed > 0
+     */
     @Override
     public int menuDownloadSpeed() {
+
         int downloadSpeed = 0;
+
         do {
             System.out.print("Enter download speed in kb: ");
             try {
@@ -71,8 +89,12 @@ public class MainMenuImpl implements MainMenu {
         return downloadSpeed;
     }
 
+    /**
+     * Method for getting the path for saving files
+     */
     @Override
     public String menuPathDownload() {
+
         String pathDownload;
 
         do {

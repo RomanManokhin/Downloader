@@ -12,19 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Класс для парсинга файла и получения необходимы данных из него
+ * A class for parsing a file with links and getting data from it
  */
 @Component
 public class BootPreparationImpl implements BootPreparation {
 
     /**
-     * метод для парсинга файла и получения ссылок для скачивания
+     * Method for getting links from a file
      */
     @Override
     public List<String> parsingFileForUrls(String pathFile) {
         List<String> urlsFromFile = null;
         File file = new File(pathFile);
-        if(!file.isFile()){
+        if (!file.isFile()) {
             throw new ArrayIndexOutOfBoundsException("File not found");
         }
         try {
@@ -36,7 +36,7 @@ public class BootPreparationImpl implements BootPreparation {
     }
 
     /**
-     * метод для получения имен файлов из листа с ссылками
+     * Method for getting filenames from links
      */
     @Override
     public List<String> parsingListUrlsForNames(List<String> urls) {

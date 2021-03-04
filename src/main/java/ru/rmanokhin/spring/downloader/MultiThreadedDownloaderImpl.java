@@ -7,13 +7,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * класс для загрузки в многопоточном режиме
+ * Класс для загрузки в многопоточном режиме
  */
 @Component
 public class MultiThreadedDownloaderImpl implements MultiThreadedDownloader {
 
     /**
-     * метод запускающий процесс скачивания файлов в многопоточном режиме
+     * Method that starts the process of downloading files in multithreaded mode
      */
     @Override
     public boolean startDownloading(int countThreads, int countUrls, List<String> urls, List<String> fileNames,

@@ -6,28 +6,28 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * Класс который производит загрузку файла
+ * Class for starting the download stream
  */
 public class DownloaderImpl implements Downloader {
 
     /**
-     * поле для ссылки для скачивание файла
+     * Download link
      */
-    private final String fileUrl;
+    private final String fileUrlToDownload;
 
     /**
-     * поле для имени файла
+     * Filename by reference
      */
-    private final String fileName;
+    private final String fileNameFromLink;
 
     /**
-     * поле для скорости загрузки
+     * Download speed
      */
     private final int downloadSpeed;
 
 
     /**
-     * переменная для пути сохранения файлов
+     * File save path
      */
     private final String folderNameToDownload;
 
@@ -37,29 +37,29 @@ public class DownloaderImpl implements Downloader {
     ByteArrayOutputStream byteArrayOutputStream;
 
     /**
-     * буфер для считывания из потока
+     * Buffer to read from stream
      */
     byte[] bufferForDownload;
 
     /**
-     * переменная для счета прочитанных байт из потока за итерацию
+     * Variable for counting bytes read from the stream per iteration
      */
     int numberOfBytesRead;
 
     /**
-     * переменная для буфера части файла
+     * File part buffer
      */
     byte[] bufferFile;
 
     /**
-     * передаём поток в байтовый массив
+     * Receiving stream
      */
     byte[] bytesToStream;
 
 
-    public DownloaderImpl(String fileUrl, String fileName, int downloadSpeed, String folderNameToDownload) {
-        this.fileUrl = fileUrl;
-        this.fileName = fileName;
+    public DownloaderImpl(String fileUrlToDownload, String fileNameFromLink, int downloadSpeed, String folderNameToDownload) {
+        this.fileUrlToDownload = fileUrlToDownload;
+        this.fileNameFromLink = fileNameFromLink;
         this.downloadSpeed = downloadSpeed;
         this.folderNameToDownload = folderNameToDownload;
     }
@@ -69,14 +69,18 @@ public class DownloaderImpl implements Downloader {
         startThread();
     }
 
+    /**
+     * Method for starting a thread
+     * Removed from Run () for testing
+     */
     @Override
     public boolean startThread() {
         System.out.println(Thread.currentThread() + " started");
 
         try {
-            inputStream = new URL(fileUrl).openStream();
+            inputStream = new URL(fileUrlToDownload).openStream();
             bytesToStream = IOUtils.toByteArray(inputStream);
-            fileOutputStream = new FileOutputStream(folderNameToDownload + "\\" + fileName, true);
+            fileOutputStream = new FileOutputStream(folderNameToDownload + "\\" + fileNameFromLink, true);
             bufferForDownload = new byte[downloadSpeed];
 
             byteArrayInputStream = new ByteArrayInputStream(bytesToStream);

@@ -6,13 +6,16 @@ import ru.rmanokhin.spring.downloader.BootPreparation;
 import ru.rmanokhin.spring.downloader.MultiThreadedDownloader;
 import ru.rmanokhin.spring.menu.MainMenu;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
- * Класс для инициализации и запуска программы
- * */
+ * The class that initializes the program
+ */
 @Component
-public class StartProgramImpl implements StartProgram{
+public class StartProgramImpl implements StartProgram {
 
     private final MainMenu mainMenu;
     private final BootPreparation bootPreparation;
@@ -26,8 +29,8 @@ public class StartProgramImpl implements StartProgram{
     }
 
     /**
-     * Метод для инициализации и запуска программы
-     * */
+     * Method for initializing, getting data and running the program
+     */
     public boolean start() {
 
         String pathFile = mainMenu.menuTakePathFile();
@@ -39,6 +42,7 @@ public class StartProgramImpl implements StartProgram{
         List<String> fileNames = bootPreparation.parsingListUrlsForNames(urls);
 
         multiThreadedDownloader.startDownloading(countThreads, urls.size(), urls, fileNames, downloadSpeed, folderForDownload);
+
         return true;
     }
 }
