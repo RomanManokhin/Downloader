@@ -3,6 +3,7 @@ package ru.rmanokhin.spring.downloader;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,9 +25,11 @@ public class BootPreparationImpl implements BootPreparation {
     public List<String> parsingFileForUrls(String pathFile) {
         List<String> urlsFromFile = null;
         File file = new File(pathFile);
+
         if (!file.isFile()) {
-            throw new ArrayIndexOutOfBoundsException("File not found");
+            throw new RuntimeException("File not found");
         }
+
         try {
             urlsFromFile = Files.readAllLines(Paths.get(pathFile));
         } catch (IOException e) {

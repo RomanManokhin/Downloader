@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,9 +41,7 @@ class BootPreparationImplTest {
 
         assertEquals(testList, actualList);
 
-        thrown = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            bootPreparation.parsingFileForUrls(wrongPathToFile);
-        });
+        thrown = assertThrows(RuntimeException.class, () -> bootPreparation.parsingFileForUrls(wrongPathToFile), "File no found");
 
         assertNotNull(thrown);
 
@@ -62,9 +62,8 @@ class BootPreparationImplTest {
 
         List<String> expectedList2 = new ArrayList<>();
 
-        thrown = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            bootPreparation.parsingListUrlsForNames(expectedList2);
-        });
+        thrown = assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> bootPreparation.parsingListUrlsForNames(expectedList2));
 
         assertNotNull(thrown);
 

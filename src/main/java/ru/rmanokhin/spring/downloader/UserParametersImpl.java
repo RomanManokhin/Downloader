@@ -45,15 +45,15 @@ public class UserParametersImpl implements UserParameters {
         inputStreamReader = new InputStreamReader(System.in);
         bufferedReader = new BufferedReader(inputStreamReader);
 
-        String temp = null;
+        String pathFile = null;
         try {
-            temp = bufferedReader.readLine();
-            boolean checkExtension = temp.endsWith(".txt");
+            pathFile = bufferedReader.readLine();
+            boolean checkExtension = pathFile.endsWith(".txt");
 
-            File fileNotEmpty = new File(temp);
+            File fileNotEmpty = new File(pathFile);
 
             if (checkExtension && fileNotEmpty.length() != 0) {
-                return temp;
+                return pathFile;
             } else {
                 return null;
             }
@@ -61,7 +61,7 @@ public class UserParametersImpl implements UserParameters {
         } catch (Exception ignored) {
 
         }
-        return temp;
+        return pathFile;
     }
 
     /**

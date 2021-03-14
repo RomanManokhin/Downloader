@@ -40,7 +40,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testTakeThreadsWithText() throws IOException {
+    void testTakeThreadsWithText() {
         String excepted = "a";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -114,7 +114,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testDownloadSpeedWithText() throws IOException {
+    void testDownloadSpeedWithText() {
         String excepted = "a";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -128,7 +128,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testDownloadSpeedWithZeroSpeed() throws IOException {
+    void testDownloadSpeedWithZeroSpeed() {
         String excepted = "0";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -140,7 +140,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testDownloadSpeedActual() throws IOException {
+    void testDownloadSpeedActual() {
         String excepted = "500";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -152,7 +152,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testPathDownloadActual() throws IOException {
+    void testPathDownloadActual() {
         String excepted = "C:\\path";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -164,7 +164,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testPathDownloadWithWrongPathToDownload() throws IOException {
+    void testPathDownloadWithWrongPathToDownload() {
         String excepted = "path";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);

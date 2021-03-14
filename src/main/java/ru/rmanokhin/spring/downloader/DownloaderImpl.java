@@ -25,16 +25,13 @@ public class DownloaderImpl implements Downloader {
      */
     private final int downloadSpeed;
 
-
     /**
      * File save path
      */
     private final String folderNameToDownload;
 
-    InputStream inputStream;
-    FileOutputStream fileOutputStream;
-    ByteArrayInputStream byteArrayInputStream;
     ByteArrayOutputStream byteArrayOutputStream;
+    InputStream inputStream;
 
     /**
      * Buffer to read from stream
@@ -50,12 +47,6 @@ public class DownloaderImpl implements Downloader {
      * File part buffer
      */
     byte[] bufferFile;
-
-    /**
-     * Receiving stream
-     */
-    byte[] bytesToStream;
-
 
     public DownloaderImpl(String fileUrlToDownload, String fileNameFromLink, int downloadSpeed, String folderNameToDownload) {
         this.fileUrlToDownload = fileUrlToDownload;
@@ -74,19 +65,15 @@ public class DownloaderImpl implements Downloader {
      * Removed from Run () for testing
      */
     @Override
-    public boolean startThread() {
-        System.out.println(Thread.currentThread() + " started");
+    public void startThread() {
 
-        try {
-            inputStream = new URL(fileUrlToDownload).openStream();
-            bytesToStream = IOUtils.toByteArray(inputStream);
-            fileOutputStream = new FileOutputStream(folderNameToDownload + "\\" + fileNameFromLink, true);
+        try (FileOutputStream fileOutputStream = new FileOutputStream(folderNameToDownload + "\\" + fileNameFromLink)) {
+
             bufferForDownload = new byte[downloadSpeed];
-
-            byteArrayInputStream = new ByteArrayInputStream(bytesToStream);
             byteArrayOutputStream = new ByteArrayOutputStream();
+            inputStream = new URL(fileUrlToDownload).openStream();
 
-            while ((numberOfBytesRead = byteArrayInputStream.read(bufferForDownload, 0, downloadSpeed)) != -1) {
+            while ((numberOfBytesRead = IOUtils.read(inputStream, bufferForDownload, 0 , downloadSpeed)) != 0) {
 
                 byteArrayOutputStream.write(bufferForDownload, 0, numberOfBytesRead);
 
@@ -100,20 +87,16 @@ public class DownloaderImpl implements Downloader {
             bufferFile = byteArrayOutputStream.toByteArray();
 
             fileOutputStream.write(bufferFile);
-            fileOutputStream.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println(Thread.currentThread() + " finished");
-        return Thread.currentThread().isAlive();
     }
-
 
     public static DownloaderBuilder builder() {
         return new DownloaderBuilder();
     }
-
 
     public static class DownloaderBuilder {
         private String fileUrl;
