@@ -3,9 +3,9 @@ package ru.rmanokhin.spring.downloader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class BootPreparationImplTest {
 
     private static BootPreparationImpl bootPreparation;
@@ -32,7 +33,7 @@ class BootPreparationImplTest {
             , "https://ruv.hotmo.org/get/music/20200207/Artik_Asti_-_Vse_mimo_68289046.mp3");
 
     @Test
-    void testParsingFileForUrls() {
+    void testParsingFileForUrls() throws FileNotFoundException {
 
         String actualPathToFile = "src/main/resources/info/data.txt";
         String wrongPathToFile = "src/main/resources/infox/data.txt";
@@ -41,7 +42,7 @@ class BootPreparationImplTest {
 
         assertEquals(testList, actualList);
 
-        thrown = assertThrows(RuntimeException.class, () -> bootPreparation.parsingFileForUrls(wrongPathToFile), "File no found");
+        thrown = assertThrows(FileNotFoundException.class, () -> bootPreparation.parsingFileForUrls(wrongPathToFile), "File no found");
 
         assertNotNull(thrown);
 

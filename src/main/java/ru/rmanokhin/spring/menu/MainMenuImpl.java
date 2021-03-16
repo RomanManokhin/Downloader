@@ -1,5 +1,6 @@
 package ru.rmanokhin.spring.menu;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import ru.rmanokhin.spring.downloader.UserParameters;
 

@@ -22,12 +22,12 @@ public class BootPreparationImpl implements BootPreparation {
      * Method for getting links from a file
      */
     @Override
-    public List<String> parsingFileForUrls(String pathFile) {
+    public List<String> parsingFileForUrls(String pathFile) throws FileNotFoundException {
         List<String> urlsFromFile = null;
         File file = new File(pathFile);
 
         if (!file.isFile()) {
-            throw new RuntimeException("File not found");
+            throw new FileNotFoundException();
         }
 
         try {
