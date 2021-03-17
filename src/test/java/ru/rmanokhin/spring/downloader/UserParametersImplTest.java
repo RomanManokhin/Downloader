@@ -93,7 +93,7 @@ class UserParametersImplTest {
 
     @Test
     void testTakePathFileWithEmptyFile() {
-        String excepted = "src/main/resources/info/test_empty_data.txt";
+        String excepted = "src/main/resources/testFiles/test_empty_data.txt";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -105,7 +105,7 @@ class UserParametersImplTest {
 
     @Test
     void testTakePathFileWithWrongExpansionFile() {
-        String excepted = "src/main/resources/info/test_empty_data";
+        String excepted = "src/main/resources/testFiles/testFileWithOutExpansion";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
 
