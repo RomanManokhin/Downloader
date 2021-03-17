@@ -55,7 +55,7 @@ class MainMenuImplTest {
 
     @Test
     void testTakePathFile() {
-        String excepted = "src/main/resources/info/testFile.txt";
+        String excepted = "src/main/resources/testFiles/testFile.txt";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -77,7 +77,7 @@ class MainMenuImplTest {
     }
 
     @Test
-    void testPathDownload() throws IOException {
+    void testPathDownload() {
         String excepted = "C:\\path";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);

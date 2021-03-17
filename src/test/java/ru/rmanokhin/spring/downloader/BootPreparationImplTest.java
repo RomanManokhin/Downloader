@@ -21,7 +21,7 @@ class BootPreparationImplTest {
     Throwable thrown;
 
     @Autowired
-    public void setStart(BootPreparationImpl bootPreparation) {
+    public void testSetStart(BootPreparationImpl bootPreparation) {
         BootPreparationImplTest.bootPreparation = bootPreparation;
     }
 

@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@Timeout(7)
 class MultiThreadedDownloaderImplTest {
 
     private final MultiThreadedDownloader multiThreadedDownloader;
@@ -30,7 +29,7 @@ class MultiThreadedDownloaderImplTest {
 
     int testCountThreads = 5;
     int testCountUrls = 5;
-    int testDownloadSpeed = 500 * 1024;
+    int testDownloadSpeed = 524_288;
     String testFolderForDownload = "src/main/resources/downloads_for_test_files/";
 
     List<String> testFileNames = Arrays.asList("test1"
@@ -48,6 +47,8 @@ class MultiThreadedDownloaderImplTest {
 
     int actualSize = 1_048_576;
 
+    CountDownLatch latch;
+
     File file1;
     File file2;
     File file3;
@@ -64,15 +65,16 @@ class MultiThreadedDownloaderImplTest {
     }
 
     @Test
-    void startDownloading() throws InterruptedException, TimeoutException {
+    @Timeout(5)
+    void startDownloading() throws InterruptedException {
 
-        CountDownLatch latch = new CountDownLatch(testCountUrls);
+        latch = new CountDownLatch(testCountUrls);
 
         new Thread(() -> {
             multiThreadedDownloader.startDownloading(testCountThreads, testCountUrls, testUrlList, testFileNames, testDownloadSpeed, testFolderForDownload);
             latch.countDown();
         }).start();
-        latch.await(6, SECONDS);
+        latch.await(4, SECONDS);
 
         file1 = new File("src/main/resources/downloads_for_test_files/test1");
         file2 = new File("src/main/resources/downloads_for_test_files/test2");

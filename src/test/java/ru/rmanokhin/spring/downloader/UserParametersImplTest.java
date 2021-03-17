@@ -80,8 +80,8 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testTakePathFileActual() throws IOException {
-        String excepted = "src/main/resources/info/testFile.txt";
+    void testTakePathFileActual() {
+        String excepted = "src/main/resources/testFiles/testFile.txt";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -92,7 +92,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testTakePathFileWithEmptyFile() throws IOException {
+    void testTakePathFileWithEmptyFile() {
         String excepted = "src/main/resources/info/test_empty_data.txt";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -104,7 +104,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testTakePathFileWithWrongExpansionFile() throws IOException {
+    void testTakePathFileWithWrongExpansionFile() {
         String excepted = "src/main/resources/info/test_empty_data";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
