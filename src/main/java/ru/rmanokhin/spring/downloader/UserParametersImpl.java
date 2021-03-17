@@ -21,20 +21,11 @@ public class UserParametersImpl implements UserParameters {
      * @return count threads
      */
     @Override
-    public int takeThreads() {
+    public int takeThreads() throws IOException {
         inputStreamReader = new InputStreamReader(System.in);
         bufferedReader = new BufferedReader(inputStreamReader);
 
-        int threads = 0;
-
-        try {
-            String temp = bufferedReader.readLine();
-            threads = Integer.parseInt(temp);
-        } catch (IOException ignored) {
-
-        }
-
-        return threads;
+        return Integer.parseInt(bufferedReader.readLine());
     }
 
     /**
@@ -66,21 +57,14 @@ public class UserParametersImpl implements UserParameters {
 
     /**
      * Method for getting the download speed of files
+     * @return download speed > 0
      */
     @Override
-    public int downloadSpeed() {
+    public int downloadSpeed() throws IOException {
         inputStreamReader = new InputStreamReader(System.in);
         bufferedReader = new BufferedReader(inputStreamReader);
 
-        int downloadSpeed = 0;
-
-        try {
-            downloadSpeed = Integer.parseInt(bufferedReader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return downloadSpeed * 1024;
+        return Integer.parseInt(bufferedReader.readLine()) * 1024;
     }
 
 

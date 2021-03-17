@@ -9,9 +9,9 @@ import ru.rmanokhin.spring.initiator.Initialization;
 
 @Component
 @Profile("!test")
-public class StarterImpl implements Starter{
+public class StarterImpl implements Starter {
 
-    private  final Initialization initialization;
+    private final Initialization initialization;
 
     @Autowired
     public StarterImpl(Initialization initialization) {

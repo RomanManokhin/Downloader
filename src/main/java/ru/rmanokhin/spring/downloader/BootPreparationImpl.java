@@ -1,5 +1,7 @@
 package ru.rmanokhin.spring.downloader;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -18,6 +20,8 @@ import java.util.List;
 @Component
 public class BootPreparationImpl implements BootPreparation {
 
+    private static final Logger logger = LogManager.getLogger();
+
     /**
      * Method for getting links from a file
      */
@@ -27,13 +31,14 @@ public class BootPreparationImpl implements BootPreparation {
         File file = new File(pathFile);
 
         if (!file.isFile()) {
+            logger.error("FileNotFoundException");
             throw new FileNotFoundException();
         }
 
         try {
             urlsFromFile = Files.readAllLines(Paths.get(pathFile));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
+
         }
         return urlsFromFile;
     }
@@ -46,7 +51,8 @@ public class BootPreparationImpl implements BootPreparation {
         List<String> namesForFiles = new ArrayList<>();
 
         if (urls.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException("Лист пуст");
+            logger.error("List is empty");
+            throw new ArrayIndexOutOfBoundsException("List is empty");
         } else {
             for (String s : urls) {
                 try {

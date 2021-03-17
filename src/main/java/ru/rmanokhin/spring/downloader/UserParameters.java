@@ -8,7 +8,7 @@ public interface UserParameters {
 
     String takePathFile();
 
-    int downloadSpeed();
+    int downloadSpeed() throws IOException;
 
     String pathDownload();
 

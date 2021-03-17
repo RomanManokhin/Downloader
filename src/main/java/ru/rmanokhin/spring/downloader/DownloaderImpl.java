@@ -1,6 +1,8 @@
 package ru.rmanokhin.spring.downloader;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
@@ -9,6 +11,8 @@ import java.net.URL;
  * Class for starting the download stream
  */
 public class DownloaderImpl implements Downloader {
+
+    private static final Logger logger = LogManager.getLogger(DownloaderImpl.class.getName());
 
     /**
      * Download link
@@ -57,7 +61,9 @@ public class DownloaderImpl implements Downloader {
 
     @Override
     public void run() {
+        logger.info(Thread.currentThread() + " started");
         startThread();
+        logger.info(Thread.currentThread() + " finished");
     }
 
     /**

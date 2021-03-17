@@ -8,7 +8,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Timeout(5)
+@Timeout(4)
 class DownloaderImplTest {
 
     String fileUrl = "http://speedtest.ftp.otenet.gr/files/test1Mb.db";

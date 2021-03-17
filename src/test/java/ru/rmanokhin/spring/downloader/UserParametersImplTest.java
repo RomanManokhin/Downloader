@@ -130,7 +130,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testDownloadSpeedWithZeroSpeed() {
+    void testDownloadSpeedWithZeroSpeed() throws IOException {
         String excepted = "0";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);
@@ -142,7 +142,7 @@ class UserParametersImplTest {
     }
 
     @Test
-    void testDownloadSpeedActual() {
+    void testDownloadSpeedActual() throws IOException {
         String excepted = "500";
         byteArrayInputStream = new ByteArrayInputStream(excepted.getBytes());
         System.setIn(byteArrayInputStream);

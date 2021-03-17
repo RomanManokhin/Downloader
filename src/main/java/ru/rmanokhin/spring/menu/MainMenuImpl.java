@@ -1,6 +1,7 @@
 package ru.rmanokhin.spring.menu;
 
-import org.springframework.context.annotation.Profile;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import ru.rmanokhin.spring.downloader.UserParameters;
 
@@ -11,6 +12,8 @@ import java.io.IOException;
  */
 @Component
 public class MainMenuImpl implements MainMenu {
+
+    private static final Logger logger = LogManager.getLogger();
 
     private final UserParameters userParameters;
 
@@ -29,14 +32,14 @@ public class MainMenuImpl implements MainMenu {
         int threads = 0;
 
         do {
-            System.out.print("Enter the number of streams to download: ");
+            logger.info("Enter the number of streams to download: ");
             try {
                 threads = userParameters.takeThreads();
                 if (threads <= 0) {
-                    System.out.println("The number should be > 0");
+                    logger.error("The number should be > 0");
                 }
-            } catch (IOException e) {
-                System.out.println("Not a number entered");
+            } catch (IOException | NumberFormatException e) {
+                logger.error("Not a number entered");
             }
         } while (threads <= 0);
         return threads;
@@ -51,12 +54,12 @@ public class MainMenuImpl implements MainMenu {
         String pathFile = null;
 
         do {
-            System.out.println("Can use that - src/main/resources/info/data.txt");
-            System.out.print("Enter file path: ");
+            logger.info("Can use that - src/main/resources/info/data.txt");
+            logger.info("Enter file path: ");
             try {
                 pathFile = userParameters.takePathFile();
                 if (pathFile == null) {
-                    System.out.println("File extension is not .txt or wrong path\n");
+                    logger.error("File extension is not .txt or wrong path\n");
                 }
             } catch (Exception ignored) {
 
@@ -77,14 +80,14 @@ public class MainMenuImpl implements MainMenu {
         int downloadSpeed = 0;
 
         do {
-            System.out.print("Enter download speed in kb: ");
+            logger.info("Enter download speed in kb: ");
             try {
                 downloadSpeed = userParameters.downloadSpeed();
                 if (downloadSpeed <= 0) {
-                    System.out.println("Speed must be greater than 0kb");
+                    logger.info("Speed must be greater than 0kb");
                 }
-            } catch (Exception e) {
-                System.out.println("Not a number entered");
+            } catch (IOException | NumberFormatException e) {
+                logger.error("Not a number entered");
             }
         } while (downloadSpeed <= 0);
         return downloadSpeed;
@@ -99,19 +102,18 @@ public class MainMenuImpl implements MainMenu {
         String pathDownload;
 
         do {
-            System.out.println("Enter path to save files: ");
-            System.out.println("Example: C:\\folderName");
-            System.out.println("Or use that - src\\main\\resources\\downloads");
+            logger.info("Enter path to save files: ");
+            logger.info("Example: C:\\folderName");
+            logger.info("Or use that - src\\main\\resources\\downloads");
 
             pathDownload = userParameters.pathDownload();
+
             if (pathDownload == null) {
-                System.out.println("Wrong way to download\n");
+                logger.error("Wrong way to download\n");
             }
 
         } while (pathDownload == null);
 
         return pathDownload;
     }
-
-
 }
